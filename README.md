@@ -1,13 +1,13 @@
-# Telegram Open Network Node
-Dockerfile for Telegram Open Network Node
+# FreeTON Validation Node
+This is validation node (dockerized) adaptation for [FreeTON](https://freeton.org/)
 
 #### Install
-```docker pull it4addict/ton-node```
-#### Create volume
-```docker volume create ton-db```
+Clone project and run  
+```docker build -t freenode .```
 #### Run
-```docker run -d --name ton-node --mount source=ton-db,target=/var/ton-work/db --network host -e "PUBLIC_IP=<YOUR_PUBLIC_IP>" -e "CONSOLE_PORT=<TCP-PORT1>" -e "LITESERVER=true" -e "LITE_PORT=<TCP-PORT2>" -it it4addict/ton-node```
-
+```docker run -d --name ton-node --network host -e "PUBLIC_IP=<YOUR_PUBLIC_IP>" -e "CONSOLE_PORT=<TCP-PORT1>" -e "LITESERVER=true" -e "LITE_PORT=<TCP-PORT2>" -it freenode```  
+  
+_Note: If you want to run stable validation node, you should link `-v <local_SSD>:/var/ton-work/db` to docker container.   Also you shold use fast SSD as [described here](https://ton.org/Validator-HOWTO.txt)._
 
 If you don't need Liteserver, then remove -e "LITESERVER=true".
 
