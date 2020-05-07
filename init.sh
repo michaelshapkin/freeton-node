@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-# global config 
-if [ ! -z "$GCONFURL" ]; then
-    echo -e "\e[1;32m[+]\e[0m Downloading provided global config."
-    wget -q $GCONFURL -O /var/ton-work/db/ton-global.config
-else
-    echo -e "\e[1;33m[=]\e[0m No global config provided, downloading default."
-    wget -q https://test.ton.org/ton-global.config.json -O /var/ton-work/db/ton-global.config
+cd /var/ton-work/db
+
+FREECONF="https://raw.githubusercontent.com/tonlabs/main.ton.dev/master/configs/ton-global.config.json"
+GLOBALCONF="/var/ton-work/db/ton-global.config"
+if [ ! -f "$GLOBALCONF" ]; then
+    wget -q $FREECONF -O $GLOBALCONF
 fi
 
 # Init local config with IP:PORT

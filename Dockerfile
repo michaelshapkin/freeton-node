@@ -26,7 +26,7 @@ COPY --from=builder /ton/build/validator-engine-console/validator-engine-console
 COPY --from=builder /ton/build/utils/generate-random-id /usr/local/bin/
 
 WORKDIR /var/ton-work/db
-COPY init.sh control.template ./
-RUN chmod +x init.sh
+COPY init.sh control.template /var/ton-work
+RUN chmod +x /var/ton-work/init.sh
 
-ENTRYPOINT ["/var/ton-work/db/init.sh"]
+ENTRYPOINT ["/var/ton-work/init.sh"]
